@@ -43,23 +43,23 @@ Be as simple as possible BUT with all msfvenom payloads.
 
 # Installation
 
-> git clone https://github.com/MatDupas/Easy-MsfVenom
->
-> cd Easy-MsfVenom; ./Easy-MsfVenom.py --upgrade
->
+- ` git clone https://github.com/MatDupas/Easy-MsfVenom `
+
+- `cd Easy-MsfVenom; ./Easy-MsfVenom.py --upgrade `
+
 
 
 # Upgrade
 To keep Easy-MsfVenom synchronized with all MsfVenom payloads, just do:
 
-> ./Easy-MsfVenom.py --upgrade
+- ` ./Easy-MsfVenom.py --upgrade `
 
 Note: it is useful to also keep metasploit-framework updated
 sudo apt update; sudo apt install metasploit-framework
 (it is better to make  backup before upgrading, just in case...)
 
 # Legal / Ethics
-* TL;DR: Don't be evil, stay on the right side *
+>` TL;DR: Don't be evil, stay on the right side `
 
 This software is for educational and Pentesting /red Teaming purposes only.
 As a reminder, Attacking targets without prior mutual consent is illegal. It is the end user’s responsibility to obey all applicable local, state and federal laws. 
