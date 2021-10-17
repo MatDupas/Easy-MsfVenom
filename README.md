@@ -13,10 +13,15 @@ Easy-MsfVenom - V1
 Goal: search, generate & deliver payloads in an quick and easy way
 Be as simple as possible BUT with all msfvenom payloads.
 
-* ever lost time Searching the right MSFpayload ? Use the fast filter
-* Tired of inputing your IP, and defaults settings ? let Easy-MsfVenom do it for you
-* Want only staged  payloads ? only Meterpreter ones ?  ask for it
-* want more complex options ? want a hidden_tcp ? you find them
+* Ever lost time Searching the right MSFpayload ? Use the fast filter
+* Tired of inputing your IP, and defaults settings ? let Easy-MsfVenom do it or ask for it !
+* Want only stageless  payloads (`-s`) ? Only Meterpreter ones (`-m`)?  
+* want more complex options ? want a hidden_tcp ? use `-k or --keyword` argument !
+
+
+
+
+
 
 #  Features 
 * fast search through all Venom payloads
@@ -30,6 +35,31 @@ Be as simple as possible BUT with all msfvenom payloads.
 
 
 # Usage
+
+** Note: By default, if omitted, we'll get `x86  bind staged payloads` **
+
+- Some classics :
+  - Meterpreter Windows(x86) Reverse TCP payloads:
+  `./Easy-MsfVenom.py  -t win -m -r`
+  - Meterpreter Windows(x86) Bind_TCP payloads:
+  `./Easy-MsfVenom.py  -t win -m`
+
+- Want more complex ones like ** hidden ports ** :
+  - Hidden Meterpreter Windows(x86) Bind_TCP payloads
+  `./Easy-MsfVenom.py  -t win -m -k hidden`
+
+- Want Minimum arguments and get interactive completion :
+  - Win shells /payloads :
+    `./Easy-MsfVenom.py  -t win`
+    
+  - Linux shells /payloads :
+    `./Easy-MsfVenom.py  -t lin`
+
+  - Web shells /payloads (PHP,ASP, Java) :
+    `./Easy-MsfVenom.py  -t web`
+
+
+
 
 # TO-DO:
 - [ ] Add encoders with fast filters and batch payloads encoding
