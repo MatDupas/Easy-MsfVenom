@@ -32,7 +32,7 @@ Be as simple as possible BUT with all msfvenom payloads.
 # Usage
 
 # TO-DO:
-- [] Add encoders with fast filters and batch payloads encoding
+- [ ] Add encoders with fast filters and batch payloads encoding
 
  
 
