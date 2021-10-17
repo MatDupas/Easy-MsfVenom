@@ -13,7 +13,7 @@ Easy-MsfVenom - V1
 Goal: search, generate & deliver payloads in an quick and easy way
 Be as simple as possible BUT with all msfvenom payloads.
 
-* ever lost some time by searching the right payload ? Use the fast filter
+* ever lost time Searching the right MSFpayload ? Use the fast filter
 * Tired of inputing your IP, and defaults settings ? let Easy-MsfVenom do it for you
 * Want only staged  payloads ? only Meterpreter ones ?  ask for it
 * want more complex options ? want a hidden_tcp ? you find them
@@ -32,8 +32,8 @@ Be as simple as possible BUT with all msfvenom payloads.
 # Usage
 
 # TO-DO:
-[] Add encoders with fast filters and batch payloads encoding
-[
+[x] Add encoders with fast filters and batch payloads encoding
+
  
 
 
@@ -43,25 +43,28 @@ Be as simple as possible BUT with all msfvenom payloads.
 
 # Installation
 
-> git clone
-> cd Easy-msfVenom
-> install.sh
+> git clone https://github.com/MatDupas/Easy-MsfVenom
+>
+> cd Easy-MsfVenom; ./Easy-MsfVenom.py --upgrade
+>
+
 
 # Upgrade
 To keep Easy-MsfVenom synchronized with all MsfVenom payloads, just do:
 
-> ./easy-MsfVenom --upgrade
+> ./Easy-MsfVenom.py --upgrade
 
 Note: it is useful to also keep metasploit-framework updated
 sudo apt update; sudo apt install metasploit-framework
 (it is better to make  backup before upgrading, just in case...)
 
 # Legal / Ethics
-TL;DR: Don't be evil, stay on the right side
+* TL;DR: Don't be evil, stay on the right side *
 
 This software is for educational and Pentesting /red Teaming purposes only.
 As a reminder, Attacking targets without prior mutual consent is illegal. It is the end user’s responsibility to obey all applicable local, state and federal laws. 
 The author assume no liability and no responsability for any misuse or damage caused by this software.
 
+Easy-MsfVenom © 2021 by Mathieu Dupas is licensed under [CC BY-NC 4.0](http://creativecommons.org/licenses/by-nc/4.0/?ref=chooser-v1)
 
 
