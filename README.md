@@ -40,7 +40,9 @@ Be as simple as possible BUT with all msfvenom payloads.
 
 - Some classics :
   - Meterpreter Windows(x86) Reverse TCP payloads:
-  `./Easy-MsfVenom.py  -t win -m -r`
+    ```bash 
+    ./Easy-MsfVenom.py  -t win -m -r
+    ```
   - Meterpreter Windows(x86) Bind_TCP payloads:
   `./Easy-MsfVenom.py  -t win -m`
 
