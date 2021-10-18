@@ -1,7 +1,9 @@
 ![Logo](https://user-images.githubusercontent.com/26366683/137634034-dae33eda-1b59-4ed8-a9ec-597c8a5200e5.png)
 
 **Goal**
+
 **Search, generate & deliver payloads in an quick and easy way**
+
 **Be as simple as possible BUT with all msfvenom payloads.**
 
 * Ever lost time searching the right MSFpayload ? Use the fast filter.
@@ -26,7 +28,10 @@
 **Note: By default, if omitted, we'll get `x86  bind staged payloads`**
 
 - **Interactive Mode:**
-  - Win shells /payloads : ```bash  ./Easy-MsfVenom.py  -t win ```
+  - Win shells /payloads : 
+    ```bash
+    ./Easy-MsfVenom.py  -t win
+    ```
     
   - Linux shells /payloads :
     ```bash 
