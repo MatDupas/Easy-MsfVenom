@@ -37,38 +37,37 @@ Be as simple as possible BUT with all msfvenom payloads.
     ./Easy-MsfVenom.py  -t win -m -r
     ```
   - Meterpreter Windows(x86) Bind_TCP payloads:
-  ``
-```bash 
+    ```bash 
     ./Easy-MsfVenom.py  -t win -m
-```
+    ```
 
 - Want Minimum arguments and get interactive completion :
   - Win shells /payloads :
-```bash 
+    ```bash 
     ./Easy-MsfVenom.py  -t win
-```
+    ```
   - Linux shells /payloads :
-```bash 
+    ```bash 
     ./Easy-MsfVenom.py  -t lin
-```
+    ```
   - Web shells /payloads (PHP,ASP, Java) :
-```bash 
+    ```bash 
     ./Easy-MsfVenom.py  -t web
-```
+    ```
 
-- Want more complex ones like ** hidden ports ** :
+- Want more complex ones like **"hidden ports"** :
   - Hidden Meterpreter Windows(x86) Bind_TCP payloads
-```bash 
+    ```bash 
   ./Easy-MsfVenom.py  -t win -m -k hidden
-```
+    ```
   - Android payloads (x86) Bind_TCP payloads
-```bash 
+    ```bash 
   ./Easy-MsfVenom.py  -t win -m -k hidden
-```
+    ```
   - Mac OS reverse staged paylaods:
-```bash   
+    ```bash   
   ./Easy-MsfVenom.py -k osx
-```
+    ```
 
 
 
@@ -86,16 +85,19 @@ Be as simple as possible BUT with all msfvenom payloads.
 
 # Installation
 
-- ` git clone https://github.com/MatDupas/Easy-MsfVenom `
 
-- `cd Easy-MsfVenom; ./Easy-MsfVenom.py --upgrade `
+```bash   
+  git clone https://github.com/MatDupas/Easy-MsfVenom
+  cd Easy-MsfVenom; ./Easy-MsfVenom.py --upgrade
+```
 
 
 
 # Upgrade
 To keep Easy-MsfVenom synchronized with all MsfVenom payloads, just do:
-
-- ` ./Easy-MsfVenom.py --upgrade `
+```bash   
+  ./Easy-MsfVenom.py --upgrade
+```
 
 Note: it is useful to also keep metasploit-framework updated
 sudo apt update; sudo apt install metasploit-framework
