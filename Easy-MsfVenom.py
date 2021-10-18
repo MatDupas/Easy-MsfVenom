@@ -37,7 +37,9 @@ Classics:
 
 Custom search:
 ---------------
+    -  Powershell payloads   ./Easy-MsfVenom.py -k powershell
     -  Hidden Meterpreter Windows(x86) Bind_TCP payloads : ./Easy-MsfVenom.py  -t win -m -k hidden
+    
 
 Full control:
 ------------
@@ -101,7 +103,7 @@ def print_available_payloads(keywords,payload_list):
 	    
 	else:
             print("[!] Sorry, no payload found, please check your inputs / combination")
-            n= input("Do you want to relax filters (O/n) ? : ")
+            n= input(Green("Do you want to relax filters (O/n) ? : "))
             if n =="n":
                 sys.exit(-1)
             else:
