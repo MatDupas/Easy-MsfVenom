@@ -112,7 +112,7 @@ def print_available_payloads(keywords,payload_list):
 
 def generate_payload(params,number,avail_payloads):
     K_TYPE ,K_ARCH,K_MET, K_BIND, K_STAGE, K_EXT, K_KEY, IP, PORT = params
-    print(params)
+    #print(params)
     
     payload_cmd =avail_payloads[number].split()[0]
     

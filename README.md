@@ -67,10 +67,8 @@
 # TO-DO:
 - [ ] Add encoders with fast filters
 - [ ] Add batch payloads
-- [ ] Add other formats
-- [ ] Improve payload name : they presently reflect the original params, not the brodened one.
+- [ ] Add other formats (.ps1, .py)
 
- 
 
 
 # Requirement
@@ -97,7 +95,7 @@ sudo apt update; sudo apt install metasploit-framework
 
 # Trick
 
-To clean up your folder from all your paylaods, just do :
+To clean up your folder from all your payloads, just do :
 ```bash
 rm _*
 ```
