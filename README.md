@@ -26,31 +26,17 @@
 **Note: By default, if omitted, we'll get `x86  bind staged payloads`**
 
 - **Interactive Mode:**
-  - Win shells /payloads : 
-    ```bash
-    ./Easy-MsfVenom.py  -t win
-    ```
+  - Win shells /payloads :   ` ./Easy-MsfVenom.py  -t win  `
     
-  - Linux shells /payloads :
-    ```bash 
-    ./Easy-MsfVenom.py  -t lin
-    ```
-  - Web shells /payloads (PHP,ASP, Java) :
-    ```bash 
-    ./Easy-MsfVenom.py  -t web
-    ```
+  - Linux shells /payloads : ` ./Easy-MsfVenom.py  -t lin  `
+  
+  - Web shells (PHP,ASP, Java) :` ./Easy-MsfVenom.py  -t web `
 
 - **Some classics :**
-  - Meterpreter Windows(x86) Bind_TCP payloads:
-    ```bash 
-    ./Easy-MsfVenom.py  -t win -m
-    ```
-  - Meterpreter Windows(x86) Reverse TCP payloads:
-    ```bash 
-    ./Easy-MsfVenom.py  -t win -m -r
-    ```
-
-
+  - Meterpreter Windows(x86) Bind_TCP payloads:   ` ./Easy-MsfVenom.py  -t win -m `
+  
+  - Meterpreter Windows(x86) Reverse TCP payloads: `./Easy-MsfVenom.py  -t win -m -r `
+   
 - **Custom search :**
    - Hidden Meterpreter Windows(x86) Bind_TCP payloads
     ```bash 
