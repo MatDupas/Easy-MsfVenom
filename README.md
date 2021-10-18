@@ -58,15 +58,15 @@ Be as simple as possible BUT with all msfvenom payloads.
 - Want more complex ones like **"hidden ports"** :
   - Hidden Meterpreter Windows(x86) Bind_TCP payloads
     ```bash 
-  ./Easy-MsfVenom.py  -t win -m -k hidden
+    ./Easy-MsfVenom.py  -t win -m -k hidden
     ```
   - Android payloads (x86) Bind_TCP payloads
     ```bash 
-  ./Easy-MsfVenom.py  -t win -m -k hidden
+    ./Easy-MsfVenom.py  -t win -m -k hidden
     ```
   - Mac OS reverse staged paylaods:
     ```bash   
-  ./Easy-MsfVenom.py -k osx
+    ./Easy-MsfVenom.py -k osx
     ```
 
 
