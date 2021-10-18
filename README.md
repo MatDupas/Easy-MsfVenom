@@ -72,6 +72,7 @@
 # TO-DO:
 - [ ] Add encoders with fast filters
 - [ ] Add batch payloads
+- [ ] Improve payload name : they presently reflect the original params, not the brodened one.
 
  
 

