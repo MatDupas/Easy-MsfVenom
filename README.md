@@ -2,9 +2,8 @@
 
 Easy-MsfVenom 
 
-**Goal: search, generate & deliver payloads in an quick and easy way
-
-Be as simple as possible BUT with all msfvenom payloads.**
+**Goal: search, generate & deliver payloads in an quick and easy way**
+**Be as simple as possible BUT with all msfvenom payloads.**
 
 * Ever lost time searching the right MSFpayload ? Use the fast filter.
 * Tired of inputing your IP, and defaults settings ? Let Easy-MsfVenom do it for you or ask for info.
@@ -57,7 +56,7 @@ Be as simple as possible BUT with all msfvenom payloads.**
     ```bash 
     ./Easy-MsfVenom.py  -t win -m -k hidden
     ```
-  - Powershell paylaods:
+  - Powershell payloads:
     ```bash   
     ./Easy-MsfVenom.py -k powershell
     ```
