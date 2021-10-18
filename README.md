@@ -2,7 +2,7 @@
 
 Easy-MsfVenom 
 
-Goal: search, generate & deliver payloads in an quick and easy way
+**Goal**: search, generate & deliver payloads in an quick and easy way
 Be as simple as possible BUT with all msfvenom payloads.
 
 * Ever lost time Searching the right MSFpayload ? Use the fast filter
@@ -29,7 +29,7 @@ Be as simple as possible BUT with all msfvenom payloads.
 
 # Usage
 
-** Note: By default, if omitted, we'll get `x86  bind staged payloads` **
+**Note: By default, if omitted, we'll get `x86  bind staged payloads`**
 
 - Some classics :
   - Meterpreter Windows(x86) Reverse TCP payloads:
@@ -37,27 +37,45 @@ Be as simple as possible BUT with all msfvenom payloads.
     ./Easy-MsfVenom.py  -t win -m -r
     ```
   - Meterpreter Windows(x86) Bind_TCP payloads:
-  `./Easy-MsfVenom.py  -t win -m`
-
-- Want more complex ones like ** hidden ports ** :
-  - Hidden Meterpreter Windows(x86) Bind_TCP payloads
-  `./Easy-MsfVenom.py  -t win -m -k hidden`
+  ``
+```bash 
+    ./Easy-MsfVenom.py  -t win -m
+```
 
 - Want Minimum arguments and get interactive completion :
   - Win shells /payloads :
-    `./Easy-MsfVenom.py  -t win`
-    
+```bash 
+    ./Easy-MsfVenom.py  -t win
+```
   - Linux shells /payloads :
-    `./Easy-MsfVenom.py  -t lin`
-
+```bash 
+    ./Easy-MsfVenom.py  -t lin
+```
   - Web shells /payloads (PHP,ASP, Java) :
-    `./Easy-MsfVenom.py  -t web`
+```bash 
+    ./Easy-MsfVenom.py  -t web
+```
+
+- Want more complex ones like ** hidden ports ** :
+  - Hidden Meterpreter Windows(x86) Bind_TCP payloads
+```bash 
+  ./Easy-MsfVenom.py  -t win -m -k hidden
+```
+  - Android payloads (x86) Bind_TCP payloads
+```bash 
+  ./Easy-MsfVenom.py  -t win -m -k hidden
+```
+  - Mac OS reverse staged paylaods:
+```bash   
+  ./Easy-MsfVenom.py -k osx
+```
 
 
 
 
 # TO-DO:
-- [ ] Add encoders with fast filters and batch payloads encoding
+- [ ] Add encoders with fast filters
+- [ ] Add batch payloads
 
  
 
