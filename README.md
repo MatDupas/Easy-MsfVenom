@@ -10,10 +10,7 @@ Be as simple as possible BUT with all msfvenom payloads.
 * Want only stageless  payloads (`-s`) ? Only Meterpreter ones (`-m`)?  
 * want more complex options ? want a hidden_tcp ? use `-k or --keyword` argument.
 
-
-![Easy-MsfVenom-screenshot](https://user-images.githubusercontent.com/26366683/137633631-a0c40732-1a18-4409-a599-1bc0b5af75e5.png)
-
-
+![Easy-MsfVenom-screenshot](https://user-images.githubusercontent.com/26366683/137700327-d5e44686-6be7-4214-b8d9-de4edd67b93a.png)
 
 
 #  Features 
