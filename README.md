@@ -2,8 +2,8 @@
 
 **Goal :**
 
--**Search, generate & deliver MSFVENOM payloads in an quick and easy way**
--**Be as simple as possible BUT with all payloads.**
+- **Search, generate & deliver MSFVENOM payloads in an quick and easy way**
+- **Be as simple as possible BUT with all payloads.**
 
 * Ever lost time searching the right MSFpayload ? Use the fast filter.
 * Tired of inputing your IP, and defaults settings ? Let Easy-MsfVenom do it for you or ask for info.
