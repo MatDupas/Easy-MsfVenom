@@ -60,7 +60,7 @@
     ```
   - Powershell payloads:
     ```bash   
-    ./Easy-MsfVenom.py -k powershell
+    ./Easy-MsfVenom.py -t win -k powershell
     ```
 - **Full control :**
   - Meterpreter Win(x64) Stageless Reverse_TCP payloads: 
@@ -89,8 +89,6 @@
   cd Easy-MsfVenom; ./Easy-MsfVenom.py --upgrade
 ```
 
-
-
 # Upgrade
 To keep Easy-MsfVenom synchronized with all MsfVenom payloads, just do:
 ```bash   
@@ -100,6 +98,14 @@ To keep Easy-MsfVenom synchronized with all MsfVenom payloads, just do:
 Note: it is useful to also keep metasploit-framework updated
 sudo apt update; sudo apt install metasploit-framework
 (it is better to make  backup before upgrading, just in case...)
+
+# Trick
+
+To clean up your folder from all your paylaods, just do :
+```bash
+rm _*
+```
+
 
 # Legal / Ethics
 >` TL;DR: Don't be evil, stay on the right side `

