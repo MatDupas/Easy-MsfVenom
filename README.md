@@ -58,10 +58,7 @@
     ```bash 
     ./Easy-MsfVenom.py  -t win -m -k hidden
     ```
-  - Powershell payloads:
-    ```bash   
-    ./Easy-MsfVenom.py -t win -k powershell
-    ```
+ 
 - **Full control :**
   - Meterpreter Win(x64) Stageless Reverse_TCP payloads: 
     ```bash

