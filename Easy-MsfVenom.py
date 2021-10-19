@@ -129,7 +129,7 @@ def generate_payload(params,number,avail_payloads):
     pname = " ".join([K_TYPE, K_ARCH,K_MET, K_BIND,K_STAGE,IP,str(PORT)]).replace(" ","-") # pretify pname
     pname = "_" + pname # fast trick to remove all payload in dir via rm _*
     
-    if any([cmd in payload_cmd for cmd in ["cmd/","vbs","python","powershell", "android", "perl"]]):
+    if any([cmd in payload_cmd for cmd in ["aix","apple_ios","bsd","cmd/","vbs","python","powershell", "android", "perl","ruby","solaris"]]):
         K_TYPE=""
         print(Orange("[EXPERIMENTAL] You'll need to add the extension to the file (ex: .py for Python)"))
         print(Green("[*] Processing payload.."))
