@@ -66,7 +66,7 @@
 
 ```bash   
   git clone https://github.com/MatDupas/Easy-MsfVenom
-  cd Easy-MsfVenom; ./Easy-MsfVenom.py --upgrade
+  cd Easy-MsfVenom; chmod +x ./Easy-MsfVenom.py; ./Easy-MsfVenom.py --upgrade
 ```
 
 # Upgrade
