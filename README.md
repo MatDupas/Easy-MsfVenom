@@ -7,7 +7,7 @@
 * Tired of inputing your IP, and defaults settings ? Let Easy-MsfVenom do it for you or ask for info.
 * Automatically launch Meterpreter listeners with the right payload or a netcat listener.
 * Want only stageless  payloads (`-s`) ? Only Meterpreter ones (`-m`)?  
-* Want more complex options ? Want a hidden_tcp ? use `-k or --keyword` argument.
+* Want to explore other options ? Want a ruby / python/ perl payload? use `-k or --keyword` argument.
 
 ![Easy-MsfVenom-screenshot](https://user-images.githubusercontent.com/26366683/137700327-d5e44686-6be7-4214-b8d9-de4edd67b93a.png)
 
@@ -38,9 +38,9 @@
   - Meterpreter Windows(x86) Reverse TCP payloads: `./Easy-MsfVenom.py  -t win -m -r `
    
 - **Custom search :**
-   - Hidden Meterpreter Windows(x86) Bind_TCP payloads
+   - Python Bind_TCP payloads
     ```bash 
-    ./Easy-MsfVenom.py  -t win -m -k hidden
+    ./Easy-MsfVenom.py  -k python
     ```
  
 - **Full control :**
