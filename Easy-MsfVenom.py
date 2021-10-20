@@ -123,6 +123,7 @@ def generate_payload(params,number,avail_payloads):
     # Stageless payload could also have been chosen instead of original staged one
     if K_BIND == "reverse" or "reverse" in payload_cmd : # We need to DOUBLE CHECK and force option for correct LHOST/RHOST
         HOST = "LHOST"
+        K_BIND = "reverse" # Force Type of shell in the case we have broadened the search and type differ from original one
     elif "hidden" in payload_cmd:
         # Particular case for hidden payloads..
         if "knock" in payload_cmd:
@@ -135,13 +136,13 @@ def generate_payload(params,number,avail_payloads):
         HOST= "RHOST" 
     
     K_STAGE = "staged" if "staged" in payload_cmd else ""
-    pname = " ".join([K_TYPE, K_ARCH,K_MET, K_BIND,K_STAGE,IP,str(PORT)]).replace(" ","-") # Pretify pname
-    pname = "_" + pname # Fast trick to remove all payloads later in dir via rm _*
-    
     if not K_TYPE: 
         # Seen when Keyword is the only input
         K_TYPE = payload_cmd.split("/")[0]
         
+    pname = " ".join([K_TYPE, K_ARCH,K_MET, K_BIND,K_STAGE,IP,str(PORT)]).replace(" ","-") # Pretify pname
+    pname = "_" + pname # Fast trick to remove all payloads later in dir via rm _*
+    
     if any([cmd in payload_cmd for cmd in ["aix","apple_ios","bsd","cmd/","vbs","python","powershell", "android", "perl","ruby","solaris"]]):
         K_TYPE=""
         print(Orange("[EXPERIMENTAL] You'll need to add the extension to the file (ex: .py for Python)"))
