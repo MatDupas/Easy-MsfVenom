@@ -9,7 +9,7 @@
 * Want only stageless  payloads (`-s`) ? Only Meterpreter ones (`-m`)?  
 * Want to explore other options ? Want a ruby / python/ perl payload? use `-k or --keyword` argument.
 
-![Easy-msfvenom1](https://user-images.githubusercontent.com/26366683/138067446-5bfbd465-7851-40fe-881f-7d639744b743.png)
+![Easy-msfvenom1](https://user-images.githubusercontent.com/26366683/138068924-460bca34-975f-48ab-a1e0-e6a7873d3aa6.png)
 
 ![Easy-msfvenom2](https://user-images.githubusercontent.com/26366683/138066717-8ce90064-5bb5-47c7-aaf2-e38e049b2c1c.png)
 
