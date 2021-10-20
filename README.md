@@ -9,7 +9,8 @@
 * Want only stageless  payloads (`-s`) ? Only Meterpreter ones (`-m`)?  
 * Want to explore other options ? Want a ruby / python/ perl payload? use `-k or --keyword` argument.
 
-![Easy-msfvenom1](https://user-images.githubusercontent.com/26366683/138066693-892af958-e79b-4a93-85ef-5ab09235943e.png)
+![Easy-msfvenom1](https://user-images.githubusercontent.com/26366683/138067446-5bfbd465-7851-40fe-881f-7d639744b743.png)
+
 ![Easy-msfvenom2](https://user-images.githubusercontent.com/26366683/138066717-8ce90064-5bb5-47c7-aaf2-e38e049b2c1c.png)
 
 
@@ -77,7 +78,7 @@ To keep Easy-MsfVenom synchronized with all MsfVenom payloads, just do:
 ```
 
 Note: it is useful to also keep metasploit-framework updated
-sudo apt update; sudo apt install metasploit-framework
+`sudo apt update; sudo apt install metasploit-framework`
 (it is better to make  backup before upgrading, just in case...)
 
 # Trick
