@@ -141,7 +141,7 @@ def generate_payload(params,number,avail_payloads):
     if not K_TYPE: 
         # Seen when Keyword is the only input
         K_TYPE = payload_cmd.split("/")[0]
-        print("K_type :",K_TYPE)
+        
     if any([cmd in payload_cmd for cmd in ["aix","apple_ios","bsd","cmd/","vbs","python","powershell", "android", "perl","ruby","solaris"]]):
         K_TYPE=""
         print(Orange("[EXPERIMENTAL] You'll need to add the extension to the file (ex: .py for Python)"))
