@@ -5,7 +5,7 @@
 
 * Ever lost time searching the right MSFpayload ? Use the fast filter for instantaneous results !
 * Tired of inputing your IP, and defaults settings ? Let Easy-MsfVenom do it for you or ask for info.
-* Automatically launch Meterpreter listeners with the right payload or a netcat listener.
+* Automatically launch the right Meterpreter listener.
 * Want only stageless  payloads (`-s`) ? Only Meterpreter ones (`-m`)?  
 * Want to explore other options ? Want a ruby / python/ perl payload? use `-k or --keyword` argument.
 
@@ -96,7 +96,7 @@ rm _*
     
 - My second goal was to be as 'lazy' and frugal for typing :  the tool just need a keyword arg to start and everything else will be guessed or asked.
 
-**How Easy-MsfVenom differ from MSFPC ?**
+**How Easy-MsfVenom differs from MSFPC ?**
 - [MSFPC](https://github.com/g0tmi1k/msfpc) from g0tmi1k  is a BASH wrapper to generate multiple types of payloads, based on users choice.
 
 My global view is that MSFPC is  a 4WD that can work on any *NIX machine thanks to bash and works great when user knows what he needs.
