@@ -87,6 +87,19 @@ To clean up your folder from all your payloads, just do :
 ```bash
 rm _*
 ```
+# FAQ
+
+** How Easy-MsfVenom differ from MSFPC ? **
+(MSFPC)[https://github.com/g0tmi1k/msfpc] from g0tmi1k  is a BASH wrapper to generate multiple types of payloads, based on users choice.
+My global view is that MSFPC is  a 4WD that can work on any *NIX machine thanks to bash and works great when user knows what he needs.
+If user wants to explore other options or is not a seasoned practitioner, he can use Easy-MsfVenom to get help and try new payloads.
+
+** what is the main goal of this tool  ? **
+- My first goal was to add some keyword searching so anybody can explore not just the classics payloads but also one of the other great 600 payloads
+    -> for ex ruby payloads : `Easy-MsfVenom.py -k ruby` 
+        -> will instantaneously  display the 12 avail. payloads without waiting 50 seconds like on my VM (use of a caching mechanism to speed things up)
+    
+- My second goal was to be as 'lazy' and frugal for typing :  the tool just need a keyword arg to start and everything else will be guessed or asked.
 
 
 # Legal / Ethics
